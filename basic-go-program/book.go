@@ -6,7 +6,7 @@ import (
 )
 
 type Book struct {
-	Item []BookList
+	Item []*BookList
 }
 
 type BookList struct {
@@ -16,14 +16,14 @@ type BookList struct {
 }
 
 func main() {
-	book, bookList := BookStore("Harry Potter", 21)
+	book, bookList := BookStore("Harry Potter", 20)
 
 	fmt.Println("test", book, string(bookList))
 }
 
 func BookStore(bookName string, amount int32) (result string, bookList []byte) {
 	book := Book{
-		Item: []BookList{
+		Item: []*BookList{
 			{
 				Name:   "Harry Potter",
 				Genre:  "Fantasy",
