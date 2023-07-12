@@ -22,9 +22,9 @@ type BookList struct {
 }
 
 func main() {
-	book, bookList := BookStore("Harry Potter", 20)
+	book, bookList := BookStore("Java Programming for Kids", 20)
 
-	fmt.Println("test", book, string(bookList))
+	fmt.Println(book, string(bookList))
 }
 
 // 3. Buat fungsi BookStore untuk melakukan pemesanan buku
@@ -38,19 +38,19 @@ func BookStore(bookName string, amount int32) (result string, bookList []byte) {
 				Amount: 20,
 			},
 			{
-				Name:   "Secrets Of Divine Love",
-				Genre:  "Religion",
+				Name:   "Bobo",
+				Genre:  "Kids",
 				Amount: 30,
 			},
 			{
-				Name:   "The Martian",
-				Genre:  "Sci-Fi",
+				Name:   "Tsubasa",
+				Genre:  "Soccer",
 				Amount: 14,
 			},
 			{
 				Name:   "Java Programming for Kids",
 				Genre:  "Technology",
-				Amount: 0,
+				Amount: 45,
 			},
 		},
 	}
@@ -61,24 +61,24 @@ func BookStore(bookName string, amount int32) (result string, bookList []byte) {
 		if v.Name == bookName {
 			// 7. Jika buku yg dipesan sesuai dengan data book yg tersedia lakukan pengecekan apakah stock buku cukup dengan jumlah buku yg dipesan
 			if v.Amount < amount {
-				result := fmt.Sprintf("Book named %s is out of stock", v.Name)
+				result = fmt.Sprintf("Book named %s is out of stock", v.Name)
 				// json.MarshalIndent() adalah fungsi yg dibuat untuk mengubah data menjadi format data JSON dengan indentasi dan format yg terstruktur
-				list, _ := json.MarshalIndent(book.Item, "", "\t")
+				bookList, _ = json.MarshalIndent(book.Item, "", "\t")
 
-				return result, list
+				return result, bookList
 			}
 
 			if v.Amount >= amount {
 				v.Amount -= amount
-				result := fmt.Sprintf("Book name %s successfully purchased", v.Name)
-				list, _ := json.MarshalIndent(book.Item, "", "\t")
+				result = fmt.Sprintf("Book name %s successfully purchased", v.Name)
+				bookList, _ = json.MarshalIndent(book.Item, "", "\t")
 
-				return result, list
+				return result, bookList
 			}
-
 		} else {
-			list, _ := json.MarshalIndent(book.Item, "", "\t")
-			return "Book not found", list
+			result = fmt.Sprintf("Book not found")
+			bookList, _ = json.MarshalIndent(book.Item, "", "\t")
+			continue
 		}
 	}
 
