@@ -36,7 +36,7 @@ func (u *userHandler) RegisterUser(c *gin.Context) {
 
 	newUser, err := u.userService.RegisterUser(input)
 	if err != nil {
-		response := helper.JsonResponse("Gagal register akun", http.StatusBadRequest, "error", nil)
+		response := helper.JsonResponse("Gagal register akun", http.StatusBadRequest, "error", err.Error())
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
