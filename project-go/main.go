@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"gorm.io/driver/postgres"
@@ -13,5 +14,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-
+	fmt.Println(db)
+	// userRepository :=
 }
